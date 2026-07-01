@@ -1,5 +1,71 @@
 :root {
+  color-scheme: light;
+
+  /* Primitive brand colors */
+  --color-vbs-black: 240 20% 5%;
+  --color-vbs-ink: 252 100% 96%;
+  --color-vbs-violet: 262 83% 58%;
+  --color-vbs-indigo: 239 84% 67%;
+  --color-vbs-cyan: 190 92% 50%;
+  --color-vbs-rose: 330 81% 60%;
+  --color-vbs-white: 252 100% 99%;
+
+  /* Semantic color tokens */
+  --background: 252 100% 99%;
+  --foreground: 249 24% 9%;
+  --surface: 252 55% 97%;
+  --surface-strong: 252 42% 94%;
+  --card: 0 0% 100%;
+  --card-foreground: 249 24% 9%;
+  --primary: var(--color-vbs-violet);
+  --primary-foreground: 0 0% 100%;
+  --secondary: 239 84% 67%;
+  --secondary-foreground: 0 0% 100%;
+  --accent: var(--color-vbs-cyan);
+  --accent-foreground: 240 20% 5%;
+  --muted: 252 35% 93%;
+  --muted-foreground: 252 9% 39%;
+  --border: 252 28% 86%;
+  --input: 252 28% 86%;
+  --ring: var(--color-vbs-violet);
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* Layout, shape, and motion */
+  --radius: 0.75rem;
+  --radius-sm: 0.5rem;
+  --radius-lg: 1rem;
+  --shadow-soft: 0 18px 50px hsl(249 24% 9% / 0.08);
+  --shadow-glow: 0 0 36px hsl(var(--primary) / 0.24);
+  --duration-fast: 150ms;
+  --duration-normal: 220ms;
+  --duration-slow: 320ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
 }
 
 .dark {
+  color-scheme: dark;
+
+  --background: var(--color-vbs-black);
+  --foreground: var(--color-vbs-ink);
+  --surface: 244 24% 8%;
+  --surface-strong: 246 24% 12%;
+  --card: 246 24% 10%;
+  --card-foreground: var(--color-vbs-ink);
+  --primary: 262 92% 70%;
+  --primary-foreground: 240 20% 5%;
+  --secondary: 238 90% 74%;
+  --secondary-foreground: 240 20% 5%;
+  --accent: 190 95% 62%;
+  --accent-foreground: 240 20% 5%;
+  --muted: 246 20% 16%;
+  --muted-foreground: 252 26% 77%;
+  --border: 248 22% 22%;
+  --input: 248 22% 22%;
+  --ring: 262 92% 70%;
+  --destructive: 0 84% 64%;
+  --destructive-foreground: 240 20% 5%;
+
+  --shadow-soft: 0 22px 70px hsl(0 0% 0% / 0.38);
+  --shadow-glow: 0 0 42px hsl(var(--primary) / 0.28);
 }
