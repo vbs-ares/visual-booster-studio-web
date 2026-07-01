@@ -23,17 +23,29 @@ export function ThemeProvider({
   defaultTheme = "system"
 }: ThemeProviderProps) {
   useEffect(() => {
-    const storedTheme = window.localStorage.getItem(storageKey) as
-      | "light"
-      | "dark"
-      | "system"
-      | null;
+    let storedTheme: "light" | "dark" | "system" | null = null;
+
+    try {
+      storedTheme = window.localStorage.getItem(storageKey) as
+        | "light"
+        | "dark"
+        | "system"
+        | null;
+    } catch {
+      storedTheme = null;
+    }
 
     applyTheme(storedTheme ?? defaultTheme);
 
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const handleSystemThemeChange = () => {
-      const currentTheme = window.localStorage.getItem(storageKey);
+      let currentTheme: string | null = null;
+
+      try {
+        currentTheme = window.localStorage.getItem(storageKey);
+      } catch {
+        currentTheme = null;
+      }
 
       if (!currentTheme || currentTheme === "system") {
         applyTheme("system");
