@@ -71,7 +71,13 @@ const transformations = [
 
 function SpreadsheetCard({ item }: { item: (typeof transformations)[number] }) {
   return (
-    <div className="rounded-xl border border-white/10 bg-white/[0.035] p-3 shadow-[0_18px_50px_rgba(0,0,0,0.28)]">
+    <div
+      className={cn(
+        "rounded-xl border border-white/10 bg-white/[0.035] p-3 shadow-[0_14px_32px_rgba(0,0,0,0.24)]",
+        interactiveCardClassName,
+        "hover:shadow-[0_16px_34px_rgba(16,185,129,0.10)]"
+      )}
+    >
       <div className="flex items-center gap-2">
         <span className="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-500/15 text-emerald-300">
           <svg
@@ -124,26 +130,43 @@ function AppCard({ item }: { item: (typeof transformations)[number] }) {
   const accentClassNames = {
     violet: {
       border: "border-primary/50",
+      hoverBorder: "hover:border-primary/45",
       text: "text-primary",
       bg: "bg-primary",
-      soft: "bg-primary/15"
+      soft: "bg-primary/15",
+      shadow: "shadow-[0_14px_34px_rgba(0,0,0,0.34),0_0_18px_rgba(124,58,237,0.08)]",
+      hoverShadow: "hover:shadow-[0_18px_38px_rgba(0,0,0,0.36),0_0_24px_rgba(124,58,237,0.16)]"
     },
     emerald: {
       border: "border-emerald-400/40",
+      hoverBorder: "hover:border-emerald-300/45",
       text: "text-emerald-300",
       bg: "bg-emerald-400",
-      soft: "bg-emerald-400/15"
+      soft: "bg-emerald-400/15",
+      shadow: "shadow-[0_14px_34px_rgba(0,0,0,0.34),0_0_18px_rgba(52,211,153,0.07)]",
+      hoverShadow: "hover:shadow-[0_18px_38px_rgba(0,0,0,0.36),0_0_24px_rgba(52,211,153,0.14)]"
     },
     amber: {
       border: "border-amber-400/40",
+      hoverBorder: "hover:border-amber-300/45",
       text: "text-amber-300",
       bg: "bg-amber-400",
-      soft: "bg-amber-400/15"
+      soft: "bg-amber-400/15",
+      shadow: "shadow-[0_14px_34px_rgba(0,0,0,0.34),0_0_18px_rgba(251,191,36,0.07)]",
+      hoverShadow: "hover:shadow-[0_18px_38px_rgba(0,0,0,0.36),0_0_24px_rgba(251,191,36,0.14)]"
     }
   }[item.accent];
 
   return (
-    <div className="rounded-xl border border-white/10 bg-[#070b14] p-3 shadow-[0_18px_50px_rgba(0,0,0,0.35)]">
+    <div
+      className={cn(
+        "isolate rounded-xl border border-white/10 bg-[#070b14] p-3",
+        accentClassNames.shadow,
+        interactiveCardClassName,
+        accentClassNames.hoverBorder,
+        accentClassNames.hoverShadow
+      )}
+    >
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-2">
           <CrystalVLogo className="h-6 w-8" />
@@ -165,37 +188,37 @@ function AppCard({ item }: { item: (typeof transformations)[number] }) {
         )}
       >
         <div className="grid grid-cols-[1.8rem_1fr] gap-3">
-        <div className="flex flex-col items-center gap-2 border-r border-white/10 pr-2" aria-hidden="true">
-          {[0, 1, 2].map((index) => (
-            <span key={`${item.app}-nav-${index}`} className="flex h-5 w-5 items-center justify-center rounded-md border border-white/10">
-              <span className={`h-1.5 w-1.5 rounded-full ${index === 0 ? accentClassNames.bg : "bg-white/35"}`} />
-            </span>
-          ))}
-        </div>
-
-        <div className="min-w-0">
-          <div className="grid grid-cols-3 gap-2">
-            {item.modules.map((module) => (
-              <div key={module} className="rounded-lg border border-white/10 bg-white/[0.035] p-2">
-                <div className={`h-1.5 w-8 rounded-full ${accentClassNames.soft}`} />
-                <p className="mt-3 truncate text-[0.62rem] font-medium text-white/65">{module}</p>
-              </div>
+          <div className="flex flex-col items-center gap-2 border-r border-white/10 pr-2" aria-hidden="true">
+            {[0, 1, 2].map((index) => (
+              <span key={`${item.app}-nav-${index}`} className="flex h-5 w-5 items-center justify-center rounded-md border border-white/10">
+                <span className={`h-1.5 w-1.5 rounded-full ${index === 0 ? accentClassNames.bg : "bg-white/35"}`} />
+              </span>
             ))}
           </div>
 
-          <div className="mt-3 rounded-lg border border-white/10 bg-white/[0.035] p-3">
-            <div className="flex h-14 items-end gap-1.5" aria-hidden="true">
-              {[26, 33, 30, 40, 36, 45, 41, 49].map((height, index) => (
-                <span
-                  key={`${item.app}-${height}-${index}`}
-                  className={`w-full rounded-t ${accentClassNames.bg}`}
-                  style={{ height: `${height}px` }}
-                />
+          <div className="min-w-0">
+            <div className="grid grid-cols-3 gap-2">
+              {item.modules.map((module) => (
+                <div key={module} className="rounded-lg border border-white/10 bg-white/[0.035] p-2">
+                  <div className={`h-1.5 w-8 rounded-full ${accentClassNames.soft}`} />
+                  <p className="mt-3 truncate text-[0.62rem] font-medium text-white/65">{module}</p>
+                </div>
               ))}
+            </div>
+
+            <div className="mt-3 rounded-lg border border-white/10 bg-white/[0.035] p-3">
+              <div className="flex h-14 items-end gap-1.5" aria-hidden="true">
+                {[26, 33, 30, 40, 36, 45, 41, 49].map((height, index) => (
+                  <span
+                    key={`${item.app}-${height}-${index}`}
+                    className={`w-full rounded-t ${accentClassNames.bg}`}
+                    style={{ height: `${height}px` }}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </ImageReadyPreview>
     </div>
   );
@@ -207,28 +230,25 @@ function TransformationRow({ item }: { item: (typeof transformations)[number] })
       <Link
         href={item.href}
         aria-label={`View ${item.app}`}
-        className={cn(
-          "grid gap-3 rounded-xl border border-transparent p-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#03050a] lg:grid-cols-[1fr_auto_1.42fr] lg:items-center",
-          interactiveCardClassName
-        )}
+        className="grid gap-3 rounded-xl border border-transparent p-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#03050a] lg:grid-cols-[1fr_auto_1.42fr] lg:items-center"
       >
         <SpreadsheetCard item={item} />
         <div className="flex justify-center">
-        <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.035] text-white">
-          <svg
-            aria-hidden="true"
-            className={cn("h-5 w-5 rotate-90 lg:rotate-0", interactiveArrowClassName)}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M5 12h14" />
-            <path d="m13 6 6 6-6 6" />
-          </svg>
-        </span>
+          <span className="group/card flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.035] text-white transition duration-normal ease-standard hover:border-primary/35 motion-reduce:transition-none">
+            <svg
+              aria-hidden="true"
+              className={cn("h-5 w-5 rotate-90 lg:rotate-0", interactiveArrowClassName)}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="m13 6 6 6-6 6" />
+            </svg>
+          </span>
         </div>
         <AppCard item={item} />
       </Link>
@@ -245,7 +265,7 @@ function HeroVisual() {
       <figcaption className="mb-4 text-center text-sm font-medium text-white/85 lg:text-left">
         Real spreadsheets. Real transformations.
       </figcaption>
-      <ol className="space-y-4">
+      <ol className="space-y-5 lg:space-y-6">
         {transformations.map((item) => (
           <TransformationRow key={item.spreadsheet} item={item} />
         ))}
